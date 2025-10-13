@@ -72,7 +72,7 @@ impl Git {
         })
     }
 
-    pub(crate) fn lock_repo(&self) -> std::sync::MutexGuard<GitRepo> {
+    pub(crate) fn lock_repo(&self) -> std::sync::MutexGuard<'_, GitRepo> {
         self.repo.lock().expect("poisoned mutex")
     }
 
@@ -231,9 +231,7 @@ impl Git {
         // straight away, they will find that it also fails because of local
         // worktree changes. Once the user has dealt with those (revert, stash
         // or commit), the rebase should work nicely.
-        repo.checkout_tree(new_commit.as_object())
-            .map_err(Error::from)
-            .reword(
+        repo.checkout_tree(new_commit.as_object()).reword(
                 "Could not check out rebased branch - please rebase manually"
                     .into(),
             )?;
@@ -561,7 +559,7 @@ impl GitRepo {
         })
     }
 
-    fn head(&self) -> Result<git2::Reference> {
+    fn head(&self) -> Result<git2::Reference<'_>> {
         Ok(self.repo.head()?)
     }
 
@@ -573,15 +571,15 @@ impl GitRepo {
         Ok(self.repo.signature()?)
     }
 
-    fn revwalk(&self) -> Result<git2::Revwalk> {
+    fn revwalk(&self) -> Result<git2::Revwalk<'_>> {
         Ok(self.repo.revwalk()?)
     }
 
-    pub(crate) fn find_commit(&self, oid: Oid) -> Result<git2::Commit> {
+    pub(crate) fn find_commit(&self, oid: Oid) -> Result<git2::Commit<'_>> {
         Ok(self.repo.find_commit(oid)?)
     }
 
-    fn find_tree(&self, oid: Oid) -> Result<git2::Tree> {
+    fn find_tree(&self, oid: Oid) -> Result<git2::Tree<'_>> {
         Ok(self.repo.find_tree(oid)?)
     }
 
@@ -589,11 +587,11 @@ impl GitRepo {
         Ok(self.repo.merge_base(a, b)?)
     }
 
-    fn references(&self) -> Result<git2::References> {
+    fn references(&self) -> Result<git2::References<'_>> {
         Ok(self.repo.references()?)
     }
 
-    fn find_reference(&self, name: &str) -> Result<git2::Reference> {
+    fn find_reference(&self, name: &str) -> Result<git2::Reference<'_>> {
         Ok(self.repo.find_reference(name)?)
     }
 
@@ -644,7 +642,7 @@ impl GitRepo {
         &self,
         name: &str,
         target: &git2::Commit<'_>,
-    ) -> Result<git2::Branch> {
+    ) -> Result<git2::Branch<'_>> {
         Ok(self.repo.branch(name, target, true)?)
     }
 
