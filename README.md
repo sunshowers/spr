@@ -10,7 +10,7 @@ spr is pronounced /ˈsuːpəɹ/, like the English word 'super'.
 
 ## Documentation
 
-Comprehensive documentation is available here: https://getcord.github.io/spr/
+Comprehensive documentation is available here: https://spacedentist.github.io/spr/ (note that this documentation hasn't been updated for Jujutsu and commit signing support)
 
 ## Installation
 
