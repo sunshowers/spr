@@ -1,3 +1,12 @@
+# Archived
+
+This repo is archived. Use https://github.com/LucioFranco/jj-spr instead.
+
+Original text follows:
+
+---
+
+
 ![spr](./docs/spr.svg)
 
 # spr &middot; [![GitHub](https://img.shields.io/github/license/getcord/spr)](https://img.shields.io/github/license/getcord/spr) [![GitHub release](https://img.shields.io/github/v/release/getcord/spr?include_prereleases)](https://github.com/getcord/spr/releases) [![crates.io](https://img.shields.io/crates/v/spr.svg)](https://crates.io/crates/spr) [![homebrew](https://img.shields.io/homebrew/v/spr.svg)](https://formulae.brew.sh/formula/spr) [![GitHub Repo stars](https://img.shields.io/github/stars/getcord/spr?style=social)](https://github.com/getcord/spr)
